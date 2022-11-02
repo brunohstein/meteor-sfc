@@ -82,7 +82,7 @@ var processFile = function (filePath) {
 
 `
 
-		var style = `<style type="text/less">
+		var style = `<style type="text/scss">
 	.${getFullComponentName(filePath)} {
 	
 	}
@@ -90,7 +90,7 @@ var processFile = function (filePath) {
 `
 		console.log('template file', dirName + '/' + baseName + '.html')
 		console.log('script file', dirName + '/' + baseName + '.js')
-		console.log('style file', dirName + '/' + baseName + '.less')
+		console.log('style file', dirName + '/' + baseName + '.scss')
 
 		if (fileExists(dirName + '/' + baseName + '.html')) {
 			template = fs.readFileSync(dirName + '/' + baseName + '.html', {encoding: 'utf8'})
@@ -105,11 +105,11 @@ var processFile = function (filePath) {
 </script>`
 		}
 
-		if (fileExists(dirName + '/' + baseName + '.less')) {
+		if (fileExists(dirName + '/' + baseName + '.scss')) {
 			style = `
 
-<style type="text/less">
-	${fs.readFileSync(dirName + '/' + baseName + '.less', {encoding: 'utf8'})}
+<style type="text/scss">
+	${fs.readFileSync(dirName + '/' + baseName + '.scss', {encoding: 'utf8'})}
 </style>`
 		}
 
@@ -137,7 +137,7 @@ var processFile = function (filePath) {
 	var scriptPath = path.join(parsedPath.dir, parsedPath.name + '.sfc.js')
 
 	var styleContent = style.html();
-	var stylePath = path.join(parsedPath.dir, parsedPath.name + '.sfc.less')
+	var stylePath = path.join(parsedPath.dir, parsedPath.name + '.sfc.scss')
 
 	if (templateContent) fs.writeFileSync(templatePath, templateContent.replace('}}=""', '}}'))
 	if (scriptContent) fs.writeFileSync(scriptPath, scriptContent)
